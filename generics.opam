@@ -4,9 +4,9 @@ synopsis: "Experimental library using modular implicits"
 version: "dev"
 maintainer: "dvlasits@gmail.com"
 authors: ["Daniel Vlasits"]
-homepage: "https://github.com/modular-implicits/imp"
-dev-repo: "git+https://github.com/modular-implicits/imp.git"
-bug-reports: "http://github.com/modular-implicits/imp/issues"
+homepage: "https://github.com/modular-implicits/Generics"
+dev-repo: "git+https://github.com/modular-implicits/Generics.git"
+bug-reports: "http://github.com/modular-implicits/Generics/issues"
 license: "MIT"
 build: [
   ["dune" "subst"] {dev}
