@@ -1,8 +1,6 @@
-open Imp.Show;;
-open Generics.Generic;;
-open Generics.GenShow;;
-open Generics.Memo;;
-
+open Imp.Show
+open Generics.Generic
+open Generics.Memo
 
 type basicSum = L of int | R of string
 
@@ -15,20 +13,17 @@ implicit module GenBasicSum = struct
   let fromRep = function
                 | Left (GenBasic (_, x)) -> L x
                 | Right (GenBasic (_, x)) -> R x
-end;;
+end
 
 type basicProd = P of int * string
- 
-
 
 let () = 
 begin
+  let open [@warning "-33"] Generics.GenShow in
   assert (show (L 1) = "L 1");
 end
 
-
-
-(* Testing Memo*)
+(* Testing Memo *)
 
 type ints = L1 of int | R1 of int
   
@@ -41,8 +36,7 @@ implicit module IntsGeneric = struct
   let (fromRep : (int genBasic, int genBasic) genSum -> ints) = function
     | Left (GenBasic (_, a)) -> L1 a
     | Right (GenBasic (_,b)) -> R1 b
-end;;
-
+end
 
 let rec fib : int -> int = function 
   | 0 -> 0
@@ -53,13 +47,10 @@ let weirdFib : ints -> int = function
   | (L1 i) -> i
   | (R1 i) -> fib i
 
-let m = memo weirdFib;;
-
-
 let () =
-  begin 
-    print (m (R1 46));
-    print (m (R1 46));
-    print (m (R1 46));
-    print (m (R1 46));
-end;;
+begin
+  let m = memo weirdFib in
+  print (m (R1 46));
+  print (m (R1 46));
+  print (m (R1 46));
+end
