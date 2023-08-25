@@ -6,20 +6,18 @@ type basicSum = L of int | R of string
 
 implicit module GenBasicSum = struct 
   type t = basicSum 
-  type rep = (int genBasic, string genBasic) genSum
+  type rep = (int basic, string basic) sum
   let toRep = function 
-                  | L x -> Left (GenBasic ("L", x))
-                  | R x -> Right (GenBasic ("R", x))
+                  | L x -> Left (Basic ("L", x))
+                  | R x -> Right (Basic ("R", x))
   let fromRep = function
-                | Left (GenBasic (_, x)) -> L x
-                | Right (GenBasic (_, x)) -> R x
+                | Left (Basic (_, x)) -> L x
+                | Right (Basic (_, x)) -> R x
 end
-
-type basicProd = P of int * string
 
 let () = 
 begin
-  let open [@warning "-33"] Generics.GenShow in
+  let open [@warning "-33"] Generics.Show in
   assert (show (L 1) = "L 1");
 end
 
@@ -29,13 +27,13 @@ type ints = L1 of int | R1 of int
   
 implicit module IntsGeneric = struct
   type t = ints
-  type rep = (int genBasic, int genBasic) genSum
-  let (toRep : ints -> (int genBasic, int genBasic) genSum) = function
-    | L1 a -> Left (GenBasic ("L1", a))
-    | R1 b -> Right (GenBasic ("R1", b))
-  let (fromRep : (int genBasic, int genBasic) genSum -> ints) = function
-    | Left (GenBasic (_, a)) -> L1 a
-    | Right (GenBasic (_,b)) -> R1 b
+  type rep = (int basic, int basic) sum
+  let (toRep : ints -> (int basic, int basic) sum) = function
+    | L1 a -> Left (Basic ("L1", a))
+    | R1 b -> Right (Basic ("R1", b))
+  let (fromRep : (int basic, int basic) sum -> ints) = function
+    | Left (Basic (_, a)) -> L1 a
+    | Right (Basic (_,b)) -> R1 b
 end
 
 let rec fib : int -> int = function 
@@ -50,6 +48,10 @@ let weirdFib : ints -> int = function
 let () =
 begin
   let m = memo weirdFib in
+  (* Dune doesn't show live output when running tests, it just prints it all at the end.
+     So, to test how fast they run, compare the times with different numbers of copies of this line.
+     (If memoisation is working, then 2 should be barely slower than 1)
+   *)
   print (m (R1 46));
   print (m (R1 46));
   print (m (R1 46));
