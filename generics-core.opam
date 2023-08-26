@@ -2,15 +2,16 @@
 opam-version: "2.0"
 version: "dev"
 synopsis:
-  "Experimental generics library using modular implicits (batteries-included)"
+  "Experimental generics library using modular implicits (dependency-free core)"
 maintainer: ["Daniel Vlasits <dvlasits@gmail.com>"]
 authors: ["Daniel Vlasits" "Patrick Reader"]
 homepage: "http://github.com/modular-implicits/generics"
 bug-reports: "http://github.com/modular-implicits/generics/issues"
 depends: [
   "dune" {>= "2.9"}
-  "generics-core" {= version}
-  "imp"
+  "ocaml-variants"
+    {= "4.02.1+modular-implicits" | = "4.02.1+modular-implicits-ber" |
+     = "4.02.1+modular-implicits+let_syntax"}
   "odoc" {with-doc}
 ]
 build: [

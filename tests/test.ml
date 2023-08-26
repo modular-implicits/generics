@@ -1,5 +1,5 @@
 open Imp.Show
-open Generics.Generic
+open Generics_core
 open Generics.Memo
 
 type basicSum = L of int | R of string

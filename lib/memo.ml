@@ -1,4 +1,4 @@
-open Generic
+open Generics_core
 
 module type Memo = sig 
   type t 

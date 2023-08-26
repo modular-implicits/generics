@@ -1,5 +1,5 @@
 (library
  (public_name generics)
- (modules Generic Show Eq Memo Ord)
- (libraries imp)
- (synopsis "Experimental library using modular implicits"))
+ (modules Show Eq Memo Ord)
+ (libraries generics-core imp)
+ (synopsis "Experimental generics library using modular implicits (batteries-included)"))

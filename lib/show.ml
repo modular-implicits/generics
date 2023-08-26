@@ -1,5 +1,5 @@
 open Imp.Show
-open Generic
+open Generics_core
 
 implicit module ShowGenBasic {X : Show} : Show with type t = X.t basic = struct
     type t = X.t basic

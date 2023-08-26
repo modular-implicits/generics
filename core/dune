@@ -1,0 +1,6 @@
+(library
+ (name generics_core)
+ (public_name generics-core)
+ (wrapped false)
+ (modules Generics_core)
+ (synopsis "Experimental generics library using modular implicits (dependency-free core)"))

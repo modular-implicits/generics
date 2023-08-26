@@ -1,4 +1,4 @@
-open Generic
+open Generics_core
 open Imp.Data
 
 implicit module OrdGenBasic {X : Ord} : Ord with type t = X.t basic = struct
