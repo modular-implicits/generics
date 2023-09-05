@@ -13,14 +13,14 @@ implicit module OrdGenProd {X : Ord} {Y : Ord} : Ord with type t = (X.t, Y.t) ge
   type t = (X.t, Y.t) genProd
   let compare (GenProd (a1, a2)) (GenProd (b1, b2)) =
                   let comp = X.compare a1 b1 in
-                    if comp = 0 then Y.compare a2 b2 else comp
+                    if comp = EQ then Y.compare a2 b2 else comp
 end;;
 
 implicit module OrdGenSum {X : Ord} {Y : Ord} : Ord with type t = (X.t, Y.t) genSum = struct 
   type t = (X.t, Y.t) genSum
   let compare a b = match a, b with
-    | Left _, Right _ -> -1
-    | Right _, Left _ -> 1
+    | Left _, Right _ -> LT
+    | Right _, Left _ -> GT
     | Left a, Left b -> X.compare a b
     | Right a, Right b -> Y.compare a b
 end;;
