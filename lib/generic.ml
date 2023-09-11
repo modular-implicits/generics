@@ -1,24 +1,16 @@
-
-
 module type Generic = sig
   type t
   type rep
   val toRep : t -> rep
   val fromRep : rep -> t
-end;;
+end
 
-let toRep {G : Generic}  = G.toRep;;
+let toRep {G : Generic}  = G.toRep
 
-let fromRep {G : Generic} = G.fromRep;;
+let fromRep {G : Generic} = G.fromRep
 
-type 'a genBasic = GenBasic of (string * 'a);;
+type 'a basic = Basic of (string * 'a)
 
-type ('a, 'b) genProd = GenProd of ('a * 'b );;
+type ('a, 'b) prod = Prod of ('a * 'b )
 
-type ('a, 'b) genSum = Left of 'a | Right of 'b;;
-
-
-
-
-
-
+type ('a, 'b) sum = Left of 'a | Right of 'b
