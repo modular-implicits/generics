@@ -1,0 +1,17 @@
+name: Build staged-generics
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ocaml/setup-ocaml@v2
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        with:
+          ocaml-compiler: ocaml-variants.4.02.1+modular-implicits-ber
+          dune-cache: true
+          opam-repositories: |
+            default: https://github.com/ocaml/opam-repository.git
+            modular-implicits: https://github.com/modular-implicits/modular-implicits-opam.git#master
+      - run: opam pin add --yes .
