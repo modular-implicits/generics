@@ -1,4 +1,4 @@
-name: Build staged-generics
+name: Build generics
 on: [push, pull_request, workflow_dispatch]
 jobs:
   install:
