@@ -6,14 +6,14 @@ To use the derivations available you must implement the `Generic` module for you
 
 ```ocaml
 implicit module GenBasicSum = struct 
-  type t = basicSum 
-  type rep = (int genBasic, string genBasic) genSum
+  type t = basic 
+  type rep = (int basic, string basic) sum
   let toRep = function 
-                  | L x -> Left (GenBasic ("L", x))
-                  | R x -> Right (GenBasic ("R", x))
+                  | L x -> Left (Basic ("L", x))
+                  | R x -> Right (Basic ("R", x))
   let fromRep = function
-                | Left (GenBasic (_, x)) -> L x
-                | Right (GenBasic (_, x)) -> R x
+                | Left (Basic (_, x)) -> L x
+                | Right (Basic (_, x)) -> R x
 end
 ```
 
